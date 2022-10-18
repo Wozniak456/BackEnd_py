@@ -25,8 +25,7 @@ RECORDS = [
     },
 ]
 
-# GET /categories, /users, /records
-# POST /category, /user, /record
+
 
 @app.route("/categories")
 def get_categories():
@@ -36,7 +35,7 @@ def get_categories():
 def create_category():
     request_data = request.get_json()
     CATEGORIES.append(request_data)
-    return jsonify({request_data})
+    return jsonify(request_data)
 
 @app.route("/users")
 def get_users():
@@ -46,7 +45,7 @@ def get_users():
 def create_user():
     request_data = request.get_json()
     USERS.append(request_data)
-    return jsonify({request_data})
+    return jsonify(request_data)
 
 @app.route("/records")
 def get_records():
@@ -56,4 +55,4 @@ def get_records():
 def create_record():
     request_data = request.get_json()
     RECORDS.append(request_data)
-    return jsonify({request_data})
+    return jsonify(request_data)
