@@ -1,6 +1,8 @@
-from flask import jsonify, request
-from backEnd_1 import app
 import datetime
+from flask import jsonify, request, Response, render_template
+
+from backEnd_1 import app
+
 CATEGORIES = [
     {
         "id": 1,
@@ -25,9 +27,7 @@ RECORDS = [
     },
 ]
 
-
-
-@app.route("/categories")
+@app.route("/categories", methods=['GET'])
 def get_categories():
     return jsonify({"categories": CATEGORIES})
 
@@ -39,15 +39,19 @@ def create_category():
 
 @app.route("/users")
 def get_users():
-    return jsonify({"users": USERS})
+    return jsonify({"records": USERS})
 
-@app.route("/user", methods=['POST'])
+@app.route("/registration")
+def register_func():
+    return render_template('registration.html')
+
+@app.route("/user", methods=['GET', 'POST'])
 def create_user():
     request_data = request.get_json()
     USERS.append(request_data)
     return jsonify(request_data)
 
-@app.route("/records")
+@app.route("/records", methods=['GET'])
 def get_records():
     return jsonify({"records": RECORDS})
 
@@ -56,3 +60,4 @@ def create_record():
     request_data = request.get_json()
     RECORDS.append(request_data)
     return jsonify(request_data)
+
