@@ -1,45 +1,22 @@
 import datetime
 from flask import jsonify, request, Response, render_template
+from flask_smorest import abort
+from backEnd_1 import app, users, category, currency, record
 
-from backEnd_1 import app
-
-CATEGORIES = [
-    {
-        "id": 1,
-        "name": "Food",
-    },
-]
-
-USERS = [
-    {
-        "id": 1,
-        "name": "Sofiia Vozniak",
-    },
-]
-
-RECORDS = [
-    {
-        "id": 1,
-        "userID": 1,
-        "categoryID": 1,
-        "date": datetime.datetime.now(),
-        "cost": 100,
-    },
-]
 
 @app.route("/categories", methods=['GET'])
 def get_categories():
-    return jsonify({"categories": CATEGORIES})
+    return jsonify({"categories": category})
 
 @app.route("/category", methods=['POST'])
 def create_category():
     request_data = request.get_json()
-    CATEGORIES.append(request_data)
+    category.append(request_data)
     return jsonify(request_data)
 
 @app.route("/users")
 def get_users():
-    return jsonify({"records": USERS})
+    return jsonify({"records": users})
 
 @app.route("/registration")
 def register_func():
@@ -48,16 +25,15 @@ def register_func():
 @app.route("/user", methods=['GET', 'POST'])
 def create_user():
     request_data = request.get_json()
-    USERS.append(request_data)
+    users.append(request_data)
     return jsonify(request_data)
 
 @app.route("/records", methods=['GET'])
 def get_records():
-    return jsonify({"records": RECORDS})
+    return jsonify({"records": record})
 
 @app.route("/record", methods=['POST'])
 def create_record():
     request_data = request.get_json()
-    RECORDS.append(request_data)
+    record.append(request_data)
     return jsonify(request_data)
-
