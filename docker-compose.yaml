@@ -1,12 +1,77 @@
 version: '3.6'
 
 services:
- app:
-   restart: always
-   build:
-     context: .
-     dockerfile: Dockerfile
-   environment:
-     PORT: 8080
-   ports:
-     - "8080:8080"
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PORT: 8080
+    ports:
+      - "8080:8080"
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: voznyakson
+      POSTGRES_DB: spending3
+#      PGDATA: /data/postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: voznyakson@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: voznyakson
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
+
+#  db:
+#    #container_name: pg_db
+#    image: postgres:15-alpine
+#    environment:
+#      POSTGRES_USER: root
+#      POSTGRES_PASSWORD: voznyakson
+#      POSTGRES_DB: spending3
+#    volumes:
+#      - ./postgres_data:/var/lib/postgresql/data/
+#    ports:
+#      - "5432:5432"
+#
+#  pgadmin:
+#    #container_name: pgadmin
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: voznyakson@gmail.com
+#      PGADMIN_DEFAULT_PASSWORD: root
+#    ports:
+#      - "5050:80"
+
+
+
