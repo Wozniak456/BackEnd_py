@@ -1,7 +1,7 @@
 import datetime
 from flask import jsonify, request, Response, render_template
 from flask_smorest import abort
-from backEnd_1 import app, users, category, currency, record
+from back_rep1_main import app, users, category, currency, record
 
 
 @app.route("/categories", methods=['GET'])
