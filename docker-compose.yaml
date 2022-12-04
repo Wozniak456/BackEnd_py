@@ -1,13 +1,15 @@
 version: '3.6'
 
 services:
-  app:
+  backEnd_1:
     restart: always
     build:
       context: .
       dockerfile: Dockerfile
     environment:
       PORT: 8080
+      FLASK_DEBUG: "
+      true"
     ports:
       - "8080:8080"
 

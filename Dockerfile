@@ -2,6 +2,8 @@ FROM python:3.6-slim
 
 ENV FLASK_APP=backEnd_1
 
+ENV FLASK_DEBUG=$FLASK_DEBUG
+
 COPY requirements.txt /opt
 
 RUN python3 -m pip install -r /opt/requirements.txt
