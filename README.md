@@ -1,20 +1,19 @@
-<h1>Лабораторна робота №1 </h1>
-<h3>з дисципліни "Технології розробки серверного ПЗ</h3>
+<h1>Laboratory work</h1>
+<h3>on the discipline "Server software development technologies"</h3>
 <br>
 
-Інструкції для запуску проекту локально:
+Instructions for running the project locally:
 
-На компютері повинен бути інстальований Docker.
-1. Зайти в папку проекту, де міститься файл docker-compose.yaml і запустити тут термінал
-2. Прописати команду docker-compose up
-3. У браузері запустити http://localhost:8080/ або http://127.0.0.1:8080/
+Docker must be installed on your computer.
+1. Navigate to the project folder containing the docker-compose.yaml file and open the terminal here.
+2. Enter the command docker-compose up.
+3. In your browser, go to http://localhost:8080/ or http://127.0.0.1:8080/.
 
-Аби перевірити справність через postman, у проекті міститься файл For_Lab1.postman_collection1.json з колекціями 
+To test the functionality using Postman, the project includes the For_Lab1.postman_collection1.json file with collections:
 <ul>
-<li>CategoryCollection</li>
-<li>UsersCollection</li>
-<li>RecordCollection</li>
-
+  <li>CategoryCollection</li>
+  <li>UsersCollection</li>
+  <li>RecordCollection</li>
 </ul>
 
-Потрібно підключити environment "Production", щоб працювала змінна LokalURL
+You need to connect the "Production" environment for the LokalURL variable to work.
